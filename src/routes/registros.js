@@ -8,6 +8,13 @@ router.get('/add', (req, res) => {
 });
 
 router.post('/add', async (req, res) => {
+    const { title, url, description} = req.body;
+    const newRegistro = {
+        title,
+        url,
+        description
+    };
+    await pool.query('INSERT INTO links set ?', [newRegistro]);
     res.send('received');
 });
 
