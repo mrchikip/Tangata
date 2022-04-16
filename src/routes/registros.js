@@ -29,5 +29,22 @@ router.get('/delete/:id', async (req, res) => {
     res.redirect('/registros');
 });
 
+router.get('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    const links = await pool.query('SELECT * FROM links WHERE ID = ?', [id]);
+    res.render('registros/edit', { link: links[0] });
+});
+
+router.post('/edit/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, url, description } = req.body;
+    const newRegistro = {
+        title,
+        url,
+        description
+    };
+    await pool.query('UPDATE links set ? WHERE ID = ?', [newRegistro, id]);
+    res.redirect('/registros');
+});
 
 module.exports = router;
