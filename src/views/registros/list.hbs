@@ -14,11 +14,18 @@
               {{description}}
             </p>
             <p>{{timeago created_at}}</p>
-            <a href="" class="btn btn-danger">Delete link</a>
+            <a href="/registros/delete/{{id}}" class="btn btn-danger">Delete link</a>
             <a href="" class="btn btn-secondary">Edit link</a>
           </div>
         </div>
       </div>
+      {{else}}
+        <div class="col-md-4 mx-auto">
+          <div class="card card-body text-center">
+            <p>No hay registros</p>
+            <a href="/registros/add">Crea Uno!</a>
+          </div>
+        </div>
     {{/each}}
 
   </div>
