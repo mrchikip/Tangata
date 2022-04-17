@@ -2,15 +2,8 @@
   <div class="container">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">TransUmo</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarText"
-        aria-controls="navbarText"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
@@ -18,24 +11,24 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/registros">Transporte</a>
           </li>
+          {{#if user}}
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">Perfil</a>
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Empleados
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Agregar</a></li>
               <li><a class="dropdown-item" href="#">Listar</a></li>
-              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
               <li><a class="dropdown-item" href="#">Solicitar Cambios</a></li>
             </ul>
           </li>
+          {{/if}}
           <li class="nav-item">
             <a class="nav-link" href="#">Programacion</a>
           </li>
@@ -43,6 +36,10 @@
         <span class="navbar-text">
           Aplicacion Para el Control de Transporte
         </span>
+        {{#if user}}
+        <span class="navbar-text">
+          <a class="nav-link" href="/logout">Cerrar Sesion</a>
+        {{/if}}
       </div>
     </div>
   </div>
