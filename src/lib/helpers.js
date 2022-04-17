@@ -10,7 +10,7 @@ return hash;
 helpers.matchPassword = async (password, savedPassword) => {
 // const result = await bcrypt.compare(password, savedPassword);
 try {
-    await bcrypt.compare(password, savedPassword);
+    return await bcrypt.compare(password, savedPassword);
 } catch (e) {
     console.log(e);
 }
