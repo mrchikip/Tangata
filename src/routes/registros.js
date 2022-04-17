@@ -13,7 +13,8 @@ router.post('/add', isLoggedIn, async(req, res) => {
     const newRegistro = {
         title,
         url,
-        description
+        description,
+        user_id: req.user.id
     };
     await pool.query('INSERT INTO links set ?', [newRegistro]);
     req.flash('success', 'Registro guardado satisfactoriamente');
@@ -21,7 +22,7 @@ router.post('/add', isLoggedIn, async(req, res) => {
 });
 
 router.get('/', isLoggedIn, async(req, res) => {
-    const links = await pool.query('SELECT * FROM links', [req.body]);
+    const links = await pool.query('SELECT * FROM links WHERE user_id = ?', [req.user.id]);
     res.render('registros/list', { links });
 });
 
