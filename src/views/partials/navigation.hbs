@@ -28,18 +28,26 @@
               <li><a class="dropdown-item" href="#">Solicitar Cambios</a></li>
             </ul>
           </li>
-          {{/if}}
           <li class="nav-item">
             <a class="nav-link" href="#">Programacion</a>
           </li>
+          {{/if}}
         </ul>
-        <span class="navbar-text">
-          Aplicacion Para el Control de Transporte
-        </span>
         {{#if user}}
         <span class="navbar-text">
           <a class="nav-link" href="/logout">Cerrar Sesion</a>
+        </span>
+        {{else}}
+        <span class="navbar-text">
+          <a class="nav-link" href="/signin">Iniciar Sesion</a>
+        </span>
+        <span class="navbar-text">
+          <a class="nav-link" href="/signup">Registrarse</a>
+        </span>
         {{/if}}
+        <span class="navbar-text">
+          Aplicacion Para el Control de Transporte
+        </span>
       </div>
     </div>
   </div>
