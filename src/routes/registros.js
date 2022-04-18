@@ -52,4 +52,51 @@ router.post('/edit/:id', isLoggedIn, async(req, res) => {
     res.redirect('/registros');
 });
 
+
+
+
+// registro de empleados
+
+
+router.get('/empleados', isLoggedIn, async(req, res) => {
+    const empleados = await pool.query('SELECT * FROM empleados WHERE lider = ?', [req.user.id]);
+    res.render('registros/list', { empleados });
+});
+
+router.get('/empleados/add', (req, res) => {
+    res.render('registros/empleados/add');
+});
+
+router.post('/empleados/add', isLoggedIn, async(req, res) => {
+    const { title, url, description } = req.body;
+    const newRegistro = {
+        title,
+        url,
+        description,
+        user_id: req.user.id
+    };
+    await pool.query('INSERT INTO empleados set ?', [newRegistro]);
+    req.flash('success', 'Registro guardado satisfactoriamente');
+    res.redirect('/registros/empleados');
+});
+
+router.get('/empleados/edit/:id', isLoggedIn, async(req, res) => {
+    const { id } = req.params;
+    const empleados = await pool.query('SELECT * FROM empleados WHERE ID = ?', [id]);
+    res.render('registros/empleados/edit', { empleados: empleados[0] });
+});
+
+router.post('/empleados/edit/:id', isLoggedIn, async(req, res) => {
+    const { id } = req.params;
+    const { title, url, description } = req.body;
+    const newRegistro = {
+        title,
+        url,
+        description
+    };
+    await pool.query('UPDATE empleados set ? WHERE ID = ?', [newRegistro, id]);
+    req.flash('success', 'Registro actualizado satisfactoriamente');
+    res.redirect('/registros/empleados');
+});
+
 module.exports = router;
