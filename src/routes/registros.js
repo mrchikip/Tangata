@@ -60,11 +60,12 @@ router.post('/edit/:id', isLoggedIn, async(req, res) => {
 
 router.get('/empleados', isLoggedIn, async(req, res) => {
     const empleados = await pool.query('SELECT * FROM empleados WHERE lider = ?', [req.user.id]);
-    res.render('registros/list', { empleados });
+    res.render('registros/empleados/list', { empleados });
 });
 
-router.get('/empleados/add', (req, res) => {
-    res.render('registros/empleados/add');
+router.get('/empleados/add', isLoggedIn, async(req, res) => {
+    const ccostos = await pool.query('SELECT * FROM ccostos');
+    res.render('registros/empleados/add', { ccostos: ccostos });
 });
 
 router.post('/empleados/add', isLoggedIn, async(req, res) => {
