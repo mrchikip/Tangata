@@ -1,7 +1,7 @@
 <div class="container p-4">
   <div class="row">
 
-    {{#each links}}
+    {{#each empleados}}
       <div class="col-md-3">
         <div class="card text-center">
           <div class="card-body">
@@ -14,16 +14,16 @@
               {{description}}
             </p>
             <p>{{timeago created_at}}</p>
-            <a href="/registros/delete/{{id}}" class="btn btn-danger">Delete link</a>
-            <a href="/registros/edit/{{id}}" class="btn btn-secondary">Edit link</a>
+            <a href="/registros/empleados/delete/{{id}}" class="btn btn-danger">Delete link</a>
+            <a href="/registros/empleados/edit/{{id}}" class="btn btn-secondary">Edit link</a>
           </div>
         </div>
       </div>
       {{else}}
         <div class="col-md-4 mx-auto">
           <div class="card card-body text-center">
-            <p>No hay registros</p>
-            <a href="/registros/add">Crear Uno</a>
+            <p>No hay empleados registrados</p>
+            <a href="/registros/empleados/add">Crea Uno!</a>
           </div>
         </div>
     {{/each}}
