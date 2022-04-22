@@ -64,13 +64,13 @@ router.get('/empleados', isLoggedIn, async(req, res) => {
 });
 
 router.get('/empleados/add', isLoggedIn, async(req, res) => {
-    const ccostos = await pool.query('SELECT * FROM ccostos');
-    res.render('registros/empleados/add', { ccostos: ccostos });
+    const proceso = await pool.query('SELECT * FROM proceso');
+    res.render('registros/empleados/add', { proceso: proceso });
 });
 
 router.get('/empleados/add', isLoggedIn, async(req, res) => {
-    const proceso = await pool.query('SELECT * FROM proceso');
-    res.render('registros/empleados/add', { proceso: proceso });
+    const ccostos = await pool.query('SELECT * FROM ccostos');
+    res.render('registros/empleados/add', { ccostos: ccostos });
 });
 
 router.post('/empleados/add', isLoggedIn, async(req, res) => {
