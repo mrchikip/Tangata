@@ -5,32 +5,62 @@
         <div class="card-body">
           <form action="/registros/add" method="post">
             <div class="form-group">
-              <input
-                type="number"
-                class="form-control"
-                name="cedula"
-                placeholder="Documento de Identidad"
-                autofocus
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                name="nombre"
-                placeholder="Nombre del Empleado"
-              />
-            </div>
-            <div class="form-group">
-              <label for="">Seleccione un centro de costos</label>
-              <select name="color" id="color">
-                {{#each ccostos}}
-                  <option value="{{id}}">{{centroCosto}}</option>
-                {{/each}}
-              </select>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-success">save</button>
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="cedula"
+                  id="cedula"
+                  placeholder="Cedula"
+                  autofocus
+                />
+                <label for="floatingInput">Cedula</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  placeholder="Nombre"
+                />
+                <label for="floatingInput">Nombre</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="apellido"
+                  placeholder="Apellido"
+                />
+                <label for="floatingInput">Apellido</label>
+              </div>
+              <div class="form-floating">
+                <select
+                  class="form-select"
+                  id="ccosto"
+                  aria-label="Centro de Costos"
+                >
+                  {{#each ccostos}}
+                    <option value="{{id}}">{{centroCosto}}</option>
+                  {{/each}}
+                </select>
+                <label for="floatingSelect">Centro de Costos</label>
+              </div>
+              <div class="form-floating">
+                <select
+                  class="form-select"
+                  id="proceso"
+                  aria-label="Proceso"
+                >
+                  {{#each proceso}}
+                    <option value="{{id}}">{{nombreProceso}}</option>
+                  {{/each}}
+                </select>
+                <label for="floatingSelect">Proceso</label>
+              </div>
+              <div class="form-floating">
+                <button class="btn btn-success">Guardar</button>
+              </div>
             </div>
           </form>
         </div>

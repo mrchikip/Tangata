@@ -68,6 +68,11 @@ router.get('/empleados/add', isLoggedIn, async(req, res) => {
     res.render('registros/empleados/add', { ccostos: ccostos });
 });
 
+router.get('/empleados/add', isLoggedIn, async(req, res) => {
+    const proceso = await pool.query('SELECT * FROM proceso');
+    res.render('registros/empleados/add', { proceso: proceso });
+});
+
 router.post('/empleados/add', isLoggedIn, async(req, res) => {
     const { title, url, description } = req.body;
     const newRegistro = {

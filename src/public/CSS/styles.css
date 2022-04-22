@@ -28,7 +28,7 @@
         margin-bottom: 0;
     }
     
-    @media (min-width: 768px) {
+    @media (min-width: 720px) {
         .masthead h1 {
             font-size: 6rem;
         }
