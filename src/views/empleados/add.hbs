@@ -3,8 +3,9 @@
     <div class="col-md-4 mx-auto">
       <div class="card">
         <div class="card-body">
-          <form action="/registros/add" method="post">
+          <form action="/empleados/add" method="post">
             <div class="form-group">
+
               <div class="form-floating mb-3">
                 <input
                   type="number"
@@ -16,39 +17,33 @@
                 />
                 <label for="floatingInput">Cedula</label>
               </div>
+
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control"
+                  name="nombre"
                   id="nombre"
                   placeholder="Nombre"
                 />
                 <label for="floatingInput">Nombre</label>
               </div>
+              
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control"
+                  name="apellido"
                   id="apellido"
                   placeholder="Apellido"
                 />
                 <label for="floatingInput">Apellido</label>
               </div>
+
               <div class="form-floating mb-3">
                 <select
                   class="form-select"
-                  id="ccosto"
-                  aria-label="Centro de Costos"
-                >
-                  {{#each ccostos}}
-                    <option value="{{id}}">{{centroCosto}}</option>
-                  {{/each}}
-                </select>
-                <label for="floatingSelect">Centro de Costos</label>
-              </div>
-              <div class="form-floating mb-3">
-                <select
-                  class="form-select"
+                  name="proceso"
                   id="proceso"
                   aria-label="Proceso"
                 >
@@ -58,9 +53,39 @@
                 </select>
                 <label for="floatingSelect">Proceso</label>
               </div>
-              <div class="form-floating mb-2">
+
+              <div class="form-floating mb-3">
+                <select
+                  class="form-select"
+                  name="lider"
+                  id="lider"
+                  aria-label="Lider"
+                >
+                  {{#each lider}}
+                    <option value="{{id}}">{{nombreLider}}</option>
+                  {{/each}}
+                </select>
+                <label for="floatingSelect">Lider</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <select
+                  class="form-select"
+                  name="ccosto"
+                  id="ccosto"
+                  aria-label="ccosto"
+                >
+                  {{#each ccostos}}
+                    <option value="{{id}}">{{centroCosto}}</option>
+                  {{/each}}
+                </select>
+                <label for="floatingSelect">Centro de Costos</label>
+              </div>
+
+              <div class="form-floating mb-2 d-grid gap-2 col-6 mx-auto">
                 <button class="btn btn-success">Guardar</button>
               </div>
+              
             </div>
           </form>
         </div>
