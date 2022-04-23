@@ -21,21 +21,19 @@ router.get('/add', isLoggedIn, async(req, res) => {
 
 
 router.post('/add', isLoggedIn, async(req, res) => {
-    const { cedula, nombre, apellido, ccostos, proceso, lider } = req.body;
+    const { id, nombreEmpleado, apellidoEmpleado, centroCosto, proceso, lider } = req.body;
     const newEmpleado = {
-        cedula,
-        nombre,
-        apellido,
-        ccosto,
+        id,
+        nombreEmpleado,
+        apellidoEmpleado,
+        centroCosto,
         proceso,
         lider
-        //        id: req.user.cedula
     };
     await pool.query('INSERT INTO empleados set ?', [newEmpleado]);
     req.flash('success', 'Registro guardado satisfactoriamente');
     res.redirect('/empleados');
 });
-
 
 // router.get('/', isLoggedIn, async(req, res) => {
 //    const empleados = await pool.query('SELECT * FROM empleados WHERE user_id = ?', [req.user.id]);
