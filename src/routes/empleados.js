@@ -31,7 +31,8 @@ router.post('/add', isLoggedIn, async(req, res) => {
 
 
 router.get('/', isLoggedIn, async(req, res) => {
-    const empleados = await pool.query('SELECT * FROM empleados WHERE id = ?', [req.user.cedula]);
+    const empleados = await pool.query('SELECT * FROM empleados');
+    // WHERE id = ?', [req.user.cedula]
 
     res.render('empleados/list', { empleados });
 });

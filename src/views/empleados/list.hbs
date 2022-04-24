@@ -11,15 +11,18 @@
             <h4 class="card-text">
               {{apellidoEmpleado}}
             </h4>
-            <h4 class="card-text">
+            <h5 class="card-text">
+              {{id}}
+            </h5>
+            <h5 class="card-text">
               {{proceso}}
-            </h4>
-            <h4 class="card-text">
+            </h5>
+            <h5 class="card-text">
               {{lider}}
-            </h4>
-            <h4 class="card-text">
+            </h5>
+            <h5 class="card-text">
               {{centroCosto}}
-            </h4>
+            </h5>
             <a href="/empleados/delete/{{id}}" class="btn btn-danger">Eliminar Empleado</a>
             <a href="/empleados/edit/{{id}}" class="btn btn-secondary">Editar  Empleado</a>
           </div>
@@ -33,6 +36,5 @@
         </div>
       </div>
     {{/each}}
-
   </div>
 </div>
