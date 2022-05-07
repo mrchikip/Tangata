@@ -1,6 +1,6 @@
-CREATE DATABASE transumo;
+CREATE DATABASE tangata;
 
-USE transumo;
+USE tangata;
 
 
 -- USERS TABLE
