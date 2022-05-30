@@ -14,6 +14,7 @@ router.get('/add', isLoggedIn, async(req, res) => {
 });
 
 
+
 router.post('/add', isLoggedIn, async(req, res) => {
     const { id, nombreEmpleado, apellidoEmpleado, centroCosto, proceso, lider } = req.body;
     const newEmpleado = {
@@ -32,28 +33,36 @@ router.post('/add', isLoggedIn, async(req, res) => {
 
 router.get('/', isLoggedIn, async(req, res) => {
     const empleados = await pool.query('SELECT * FROM empleados');
-    // WHERE id = ?', [req.user.cedula]
-
     res.render('empleados/list', { empleados });
 });
 
-
-
-router.get('/empleados/edit/:id', isLoggedIn, async(req, res) => {
+router.get('/delete/:id', isLoggedIn, async(req, res) => {
     const { id } = req.params;
-    const empleados = await pool.query('SELECT * FROM empleados WHERE ID = ?', [id]);
-    res.render('empleados/edit', { empleados: empleados[0] });
+    await pool.query('DELETE FROM empleados WHERE ID = ?', [id]);
+    req.flash('success', 'Registro eliminado satisfactoriamente');
+    res.redirect('/empleados');
 });
 
-router.post('/empleados/edit/:id', isLoggedIn, async(req, res) => {
+router.get('/edit/:id', isLoggedIn, async(req, res) => {
     const { id } = req.params;
-    const { title, url, description } = req.body;
-    const newRegistro = {
-        title,
-        url,
-        description
+    const proceso = await pool.query('SELECT * FROM proceso');
+    const centroCosto = await pool.query('SELECT * FROM ccostos');
+    const lider = await pool.query('SELECT * FROM lider');
+    const empleados = await pool.query('SELECT * FROM empleados WHERE ID = ?', [id]);
+    res.render('empleados/edit', { proceso, centroCosto, lider, empleados: empleados[0] });
+});
+
+router.post('/edit/:id', isLoggedIn, async(req, res) => {
+    const { id } = req.body;
+    const { nombreEmpleado, apellidoEmpleado, centroCosto, proceso, lider } = req.body;
+    const editEmpleado = {
+        nombreEmpleado,
+        apellidoEmpleado,
+        centroCosto,
+        proceso,
+        lider
     };
-    await pool.query('UPDATE empleados set ? WHERE ID = ?', [newRegistro, id]);
+    await pool.query('UPDATE empleados set ? WHERE ID = ?', [editEmpleado, id]);
     req.flash('success', 'Registro actualizado satisfactoriamente');
     res.redirect('/empleados');
 });
